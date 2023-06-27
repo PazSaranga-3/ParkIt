@@ -16,6 +16,25 @@ export default function reducerUser(state = {}, action){ //state = [], action = 
       };
       return newState;
 
+      case 'pay' :
+        newState = {
+          ...state,
+          parkFlag : false,
+        };
+        return newState;
+
+      case 'restor' :
+        let tempVal = state.parkHistory[action.payload]
+        newState = {
+          ...state,
+          parkFlag : true , 
+          currentParkingIndex : action.payload,
+          parkHistory : [...state.parkHistory,tempVal]
+        }
+        return newState;
+
+      case 'removAupdate' :
+        return {};
 
     default : 
       return state

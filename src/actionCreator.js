@@ -22,6 +22,7 @@ export const addUser = (name, carType, carNum, pass) => {            // adding u
       carNum,
       carType,
       parkFlag: false,                        //Cant put bollian
+      currentParkingIndex : 0,
       parkHistory: []
     }
   })
@@ -32,6 +33,7 @@ export const addUser = (name, carType, carNum, pass) => {            // adding u
     carNum,
     carType,
     parkFlag: false,
+    currentParkingIndex : 0,
     parkHistory: []
 
   } })
@@ -54,6 +56,9 @@ export const loginMe = (user,pass) => {                                         
 export const startPark = (city) => {
   console.log(store.getState().reducerUser);
  let user = store.getState().reducerUser
+ if (Object.keys(user).length === 0) {
+  return alert('please Login first')
+ }
  if (user.parkFlag){
   return alert('you are already in a parking mode, please finish your parking first')
  }
@@ -70,4 +75,18 @@ export const startPark = (city) => {
   console.log(store.getState().reducerUser);
   return true
  }
+}
+
+export const pay = () => {
+  store.dispatch({type : 'pay', payload : false})
+}
+
+export const restorAction = (i) =>{
+  store.dispatch({type : 'restor', payload : i})
+  
+}
+export const removAupdate = () =>{
+  let state = store.getState().reducerUser
+  store.dispatch({type : 'removAupdate', payload : state})
+  
 }
