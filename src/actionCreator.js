@@ -21,7 +21,7 @@ export const addUser = (name, carType, carNum, pass) => {            // adding u
       pass,
       carNum,
       carType,
-      parkFlag: false,
+      parkFlag: false,                        //Cant put bollian
       parkHistory: []
     }
   })
@@ -52,6 +52,8 @@ export const loginMe = (user,pass) => {                                         
 }
 
 export const startPark = (city) => {
+  console.log(store.getState().reducerUser);
+  debugger
  let user = store.getState().reducerUser
  if (user.parkFlag){
   return alert('you are already in a parking mode, please finish your parking first')
@@ -67,7 +69,8 @@ export const startPark = (city) => {
   else if(city == 'RH'){
     user.parkHistory.push(RH)
   }
-  store.dispatch({type : 'startPark', payload : user})
+  store.dispatch({type : 'startPark', payload : {user}})
+  console.log(store.getState().reducerUser);
   return true
  }
 }
