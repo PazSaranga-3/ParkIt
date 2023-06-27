@@ -53,23 +53,20 @@ export const loginMe = (user,pass) => {                                         
 
 export const startPark = (city) => {
   console.log(store.getState().reducerUser);
-  debugger
  let user = store.getState().reducerUser
  if (user.parkFlag){
   return alert('you are already in a parking mode, please finish your parking first')
  }
  else{
-  user.parkFlag = true
   if(city == 'TLV'){
-    user.parkHistory.push(TLV)
+   store.dispatch({type : 'startPark', payload : TLV})
   }
   else if(city == 'NT'){
-    user.parkHistory.push(NT)
+   store.dispatch({type : 'startPark', payload : NT})
   }
   else if(city == 'RH'){
-    user.parkHistory.push(RH)
+   store.dispatch({type : 'startPark', payload : RH})
   }
-  store.dispatch({type : 'startPark', payload : {user}})
   console.log(store.getState().reducerUser);
   return true
  }
