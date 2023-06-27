@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import store from '../store'
 import { startPark } from '../actionCreator'
+import { useNavigate } from 'react-router-dom'
 
 export default function ChoosePark() {
   const [selectOp,selectOpCh] = useState()
 
+  const nav  = useNavigate()
   let user = store.getState().reducerUser
   return (
     <div>
@@ -15,7 +17,7 @@ export default function ChoosePark() {
         <option value="RH">Rehuvot</option>
       </select>
       <p>{user.carNum}</p>
-      <button onClick={()=>{if(startPark(selectOp)){alert('you have start parking')}}}>Start Parking</button>
+      <button onClick={()=>{if(startPark(selectOp)){nav('/allParking'); alert('you have start parking')}}}>Start Parking</button>
     </div>
   )
 }

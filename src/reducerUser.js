@@ -4,12 +4,15 @@ import store from "./store"
 export default function reducerUser(state = {}, action){ //state = [], action = { type, payload }
   switch(action.type){
     case 'logIn' :
-      return action.payload
+      let newState = action.payload
+      return newState
 
     case 'startPark' :
-       return action.payload
+       newState = action.payload
+      return newState
 
-      default : 
+
+    default : 
       return state
 
     }
